@@ -48,29 +48,56 @@ class YoloTracker:
 
 
 class MediaPipeTracker:
-    """CPU fallback. MediaPipe is imported lazily so its absence (e.g. no
-    Python 3.13 wheel) never breaks the YOLO path."""
-    def __init__(self, conf: float = 0.5):
+    """CPU fallback using the MediaPipe Tasks HandLandmarker.
+
+    The legacy mp.solutions.hands API is unavailable on Python 3.13, so this
+    uses mp.tasks. The hand_landmarker.task model bundle (21 landmarks, same
+    topology) is downloaded once on first use if not present. Lazy imports keep
+    MediaPipe's absence from ever breaking the YOLO path."""
+
+    MODEL_URL = ("https://storage.googleapis.com/mediapipe-models/"
+                 "hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task")
+
+    def __init__(self, conf: float = 0.5, model_path: str = "hand_landmarker.task"):
+        import os
+        import urllib.request
+
         import mediapipe as mp
+        from mediapipe.tasks import python as mp_python
+        from mediapipe.tasks.python import vision
+
+        if not os.path.exists(model_path):
+            urllib.request.urlretrieve(self.MODEL_URL, model_path)
+
         self.device = "cpu"
-        self._hands = mp.solutions.hands.Hands(
-            max_num_hands=1, min_detection_confidence=conf,
-            min_tracking_confidence=conf)
+        self._mp = mp
+        base = mp_python.BaseOptions(model_asset_path=model_path)
+        options = vision.HandLandmarkerOptions(
+            base_options=base,
+            num_hands=1,
+            min_hand_detection_confidence=conf,
+            min_hand_presence_confidence=conf,
+            min_tracking_confidence=conf,
+            running_mode=vision.RunningMode.IMAGE,
+        )
+        self._landmarker = vision.HandLandmarker.create_from_options(options)
 
     def process(self, frame) -> HandResult | None:
         import cv2
+
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        res = self._hands.process(rgb)
-        if not res.multi_hand_landmarks:
+        mp_image = self._mp.Image(image_format=self._mp.ImageFormat.SRGB, data=rgb)
+        result = self._landmarker.detect(mp_image)
+        if not result.hand_landmarks:
             return None
-        lm = res.multi_hand_landmarks[0].landmark
+        lm = result.hand_landmarks[0]
         landmarks = tuple((p.x, p.y) for p in lm[:NUM_LANDMARKS])
         conf = 1.0
         handed = None
-        if res.multi_handedness:
-            cl = res.multi_handedness[0].classification[0]
-            conf = float(cl.score)
-            handed = cl.label
+        if result.handedness and result.handedness[0]:
+            cat = result.handedness[0][0]
+            conf = float(cat.score)
+            handed = cat.category_name
         return HandResult(landmarks=landmarks, confidence=conf, handedness=handed)
 
 
