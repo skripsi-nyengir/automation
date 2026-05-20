@@ -67,6 +67,7 @@ class MediaPipeTracker:
         from mediapipe.tasks.python import vision
 
         if not os.path.exists(model_path):
+            print(f"[tracker] downloading MediaPipe hand model to {model_path} ...")
             urllib.request.urlretrieve(self.MODEL_URL, model_path)
 
         self.device = "cpu"

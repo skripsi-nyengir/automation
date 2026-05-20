@@ -80,10 +80,16 @@ def main():
 
     try:
         while True:
-            frame = cam.read()
+            try:
+                frame = cam.read()
+            except CameraError as e:
+                print(f"ERROR: camera lost mid-run: {e}")
+                break
             frame = cv2.flip(frame, 1)  # mirror so movement feels natural
             now = time.time()
-            dt = now - prev_t
+            # Clamp dt so a long tracking-loss gap doesn't spike EMA alpha to ~1
+            # (which would disable smoothing for the first frame after re-entry).
+            dt = min(now - prev_t, 0.1)
             prev_t = now
             if dt > 0:
                 fps = 0.9 * fps + 0.1 * (1.0 / dt)
