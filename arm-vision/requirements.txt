@@ -10,3 +10,4 @@ websocket-client
 pytest
 # Optional CPU fallback backend. May lack a Python 3.13 wheel; install only if needed:
 #   pip install mediapipe
+websockets  # test-only: mock WebSocket server for robot_client tests
