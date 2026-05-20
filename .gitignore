@@ -1,0 +1,13 @@
+# ML training artifacts (can be large)
+datasets/
+runs/
+*.pt
+*.task
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / tooling
+.claude/
+.venv/
