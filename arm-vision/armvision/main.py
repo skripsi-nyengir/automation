@@ -33,6 +33,27 @@ def parse_args():
     return p.parse_args()
 
 
+def draw_hand(frame, result):
+    """Draw a tracking box around the detected hand plus its 21 landmarks.
+
+    The box is derived from the landmark extents, so it works identically for
+    every backend (YOLO or MediaPipe). Landmarks are normalized 0..1 in the
+    same (already-flipped) frame being displayed."""
+    h, w = frame.shape[:2]
+    pts = [(int(x * w), int(y * h)) for x, y in result.landmarks]
+    xs = [p[0] for p in pts]
+    ys = [p[1] for p in pts]
+    pad = 12
+    x0, y0 = max(min(xs) - pad, 0), max(min(ys) - pad, 0)
+    x1, y1 = min(max(xs) + pad, w - 1), min(max(ys) + pad, h - 1)
+    cv2.rectangle(frame, (x0, y0), (x1, y1), (0, 200, 255), 2)
+    label = f"hand {result.confidence:.2f}"
+    cv2.putText(frame, label, (x0, max(y0 - 6, 12)), cv2.FONT_HERSHEY_SIMPLEX,
+                0.5, (0, 200, 255), 1, cv2.LINE_AA)
+    for px, py in pts:
+        cv2.circle(frame, (px, py), 2, (255, 0, 0), -1)
+
+
 def draw_overlay(frame, angles, engaged, sending, device, fps):
     lines = [
         f"backend dev: {device}   fps: {fps:4.1f}",
@@ -117,6 +138,8 @@ def main():
                         client.send(servo, value)
                 last_sent = dict(int_angles)
 
+            if hand_present:
+                draw_hand(frame, result)
             draw_overlay(frame, int_angles or last_sent, safety.engaged,
                          decision.send, tracker.device, fps)
             cv2.imshow("arm-vision", frame)
