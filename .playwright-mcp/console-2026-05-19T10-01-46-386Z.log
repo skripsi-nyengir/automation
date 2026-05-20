@@ -1,0 +1,8 @@
+[     370ms] [LOG] [WS] Connected @ http://localhost:8081/app.js:39
+[     409ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8081/favicon.ico:0
+[  952140ms] [LOG] [WS] Disconnected @ http://localhost:8081/app.js:48
+[  955148ms] [LOG] [WS] Reconnecting... @ http://localhost:8081/app.js:77
+[  955167ms] [LOG] [WS] Connected @ http://localhost:8081/app.js:39
+[ 2702384ms] [LOG] [WS] Connected @ http://localhost:8081/app.js:39
+[ 2753388ms] [LOG] [WS] Connected @ http://localhost:8081/app.js:39
+[ 2765995ms] [LOG] [WS] Connected @ http://localhost:8081/app.js:39

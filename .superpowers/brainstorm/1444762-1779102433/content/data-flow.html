@@ -1,0 +1,66 @@
+<h2>🔄 Data Flow & Error Handling</h2>
+
+<div class="section">
+  <h3>Flow Lengkap</h3>
+  <div style="background: #1e1e2e; padding: 16px; border-radius: 8px; font-family: monospace; font-size: 13px; line-height: 2;">
+    1. User geser slider "Base" ke 45°<br/>
+    2. app.js: <span style="color: #4CAF50;">client.publish('robot/servo/base', '45')</span><br/>
+    3. MQTT Broker terima → forward ke ESP32<br/>
+    4. ESP32 callback: <span style="color: #4CAF50;">servoBase.write(45)</span><br/>
+    5. Servo bergerak ke 45° ✅<br/>
+    <br/>
+    ⏱️ Latency total: ~10-50ms (dalam jaringan lokal)
+  </div>
+</div>
+
+<div class="section">
+  <h3>Error Handling</h3>
+  <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 250px; background: #1e1e2e; padding: 12px; border-radius: 8px;">
+      <strong>🛑 WiFi Putus</strong><br/>
+      <span style="color: #888;">ESP32 auto-retry connect tiap 5 detik. Servo tetap di posisi terakhir.</span>
+    </div>
+    <div style="flex: 1; min-width: 250px; background: #1e1e2e; padding: 12px; border-radius: 8px;">
+      <strong>🔴 MQTT Disconnect</strong><br/>
+      <span style="color: #888;">Browser: status merah + slider disable. ESP32: reconnect otomatis.</span>
+    </div>
+    <div style="flex: 1; min-width: 250px; background: #1e1e2e; padding: 12px; border-radius: 8px;">
+      <strong>⚠️ Nilai Invalid</strong><br/>
+      <span style="color: #888;">ESP32 validasi 0-180. Nilai di luar range diabaikan + log error.</span>
+    </div>
+    <div style="flex: 1; min-width: 250px; background: #1e1e2e; padding: 12px; border-radius: 8px;">
+      <strong>🆘 Emergency Stop</strong><br/>
+      <span style="color: #888;">Tombol kirim 'STOP' ke topic robot/emergency. ESP32 nonaktifkan semua servo.</span>
+    </div>
+    <div style="flex: 1; min-width: 250px; background: #1e1e2e; padding: 12px; border-radius: 8px;">
+      <strong>🐳 Docker Down</strong><br/>
+      <span style="color: #888;">docker compose restart. ESP32 auto-reconnect saat broker kembali.</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Ringkasan Design ✅</h3>
+  <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+    <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; flex: 1; min-width: 150px;">
+      <strong>Arsitektur</strong><br/>
+      <span style="color: #888;">Dockerized MQTT + Static Web</span>
+    </div>
+    <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; flex: 1; min-width: 150px;">
+      <strong>Frontend</strong><br/>
+      <span style="color: #888;">Plain HTML/CSS/JS + MQTT.js</span>
+    </div>
+    <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; flex: 1; min-width: 150px;">
+      <strong>Backend</strong><br/>
+      <span style="color: #888;">Tidak ada (static only)</span>
+    </div>
+    <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; flex: 1; min-width: 150px;">
+      <strong>ESP32</strong><br/>
+      <span style="color: #888;">PubSubClient + ESP32Servo</span>
+    </div>
+    <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; flex: 1; min-width: 150px;">
+      <strong>Komunikasi</strong><br/>
+      <span style="color: #888;">MQTT over WebSocket (browser) + TCP (ESP32)</span>
+    </div>
+  </div>
+</div>

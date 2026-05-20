@@ -1,0 +1,72 @@
+<h2>📝 Nginx Config Update</h2>
+
+<div class="section">
+  <h3>Struktur folder diperbarui</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+    robot-control/<br/>
+    ├── docker-compose.yml<br/>
+    ├── mosquitto.conf<br/>
+    ├── nginx.conf            &lt;── baru<br/>
+    ├── web/<br/>
+    │&nbsp;&nbsp;├── index.html<br/>
+    │&nbsp;&nbsp;├── style.css<br/>
+    │&nbsp;&nbsp;└── app.js     &lt;── MQTT.js + slider logic<br/>
+    └── esp32/<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;└── robot-arm.ino
+  </div>
+</div>
+
+<div class="section">
+  <h3>nginx.conf</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+    events {}<br/>
+    http {<br/>
+    &nbsp;&nbsp;server {<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;listen 80;<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;root /usr/share/nginx/html;<br/>
+    <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;location / {<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try_files $uri $uri/ =404;<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+    <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;# Proxy MQTT WebSocket ke Mosquitto<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;location /mqtt {<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass http://mosquitto:9001;<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_http_version 1.1;<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_set_header Upgrade $http_upgrade;<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_set_header Connection "upgrade";<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_set_header Host $host;<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+    &nbsp;&nbsp;}<br/>
+    }
+  </div>
+</div>
+
+<div class="section">
+  <h3>Di app.js — tinggal 1 baris</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+    // Auto-connect — nggak perlu config manual<br/>
+    const brokerUrl = 'ws://' + window.location.host + '/mqtt';<br/>
+    const client = mqtt.connect(brokerUrl);<br/>
+    <br/>
+    // Kirim nilai slider ke topic servo<br/>
+    sliderBase.oninput = (e) =&gt; {<br/>
+    &nbsp;&nbsp;client.publish('robot/servo/base', e.target.value);<br/>
+    };
+  </div>
+  <p><code>window.location.host</code> = <code>localhost:8080</code> → otomatis ambil hostname dari URL yang dibuka user.</p>
+  <p><strong>Nol config.</strong> Tinggal <code>docker compose up -d</code>, buka browser, langsung connect.</p>
+</div>
+
+<div class="section">
+  <h3>docker-compose.yml — tambah volume nginx.conf</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+    web:<br/>
+    &nbsp;&nbsp;image: nginx:alpine<br/>
+    &nbsp;&nbsp;ports:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;- "8080:80"<br/>
+    &nbsp;&nbsp;volumes:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;- ./web:/usr/share/nginx/html<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;- ./nginx.conf:/etc/nginx/nginx.conf  # baruuu
+  </div>
+</div>

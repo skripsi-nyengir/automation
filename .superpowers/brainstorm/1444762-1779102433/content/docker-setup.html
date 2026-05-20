@@ -1,0 +1,63 @@
+<h2>🐳 Docker Setup</h2>
+
+<div class="section">
+  <h3>docker-compose.yml</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+    version: '3.8'<br/>
+    services:<br/>
+    <br/>
+    &nbsp;&nbsp;mosquitto:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;image: eclipse-mosquitto:latest<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;ports:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- "1883:1883"   &nbsp;&nbsp;# MQTT TCP (ESP32)<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- "9001:9001"   &nbsp;&nbsp;# MQTT WebSocket (Browser)<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;volumes:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ./mosquitto.conf:/mosquitto/config/mosquitto.conf<br/>
+    <br/>
+    &nbsp;&nbsp;web:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;image: nginx:alpine<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;ports:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- "8080:80"<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;volumes:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ./web:/usr/share/nginx/html
+  </div>
+</div>
+
+<div class="section">
+  <h3>mosquitto.conf</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+    listener 1883<br/>
+    protocol mqtt<br/>
+    allow_anonymous true<br/>
+    <br/>
+    listener 9001<br/>
+    protocol websockets<br/>
+    allow_anonymous true
+  </div>
+  <p class="subtitle">⚠️ allow_anonymous=true untuk lokal. Jangan dipakai di publik.</p>
+</div>
+
+<div class="section">
+  <h3>Folder Structure</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+    robot-control/<br/>
+    ├── docker-compose.yml<br/>
+    ├── mosquitto.conf<br/>
+    ├── web/<br/>
+    │&nbsp;&nbsp;├── index.html<br/>
+    │&nbsp;&nbsp;├── style.css<br/>
+    │&nbsp;&nbsp;└── app.js<br/>
+    └── esp32/<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;└── robot-arm.ino
+  </div>
+</div>
+
+<div class="section">
+  <h3>Cara Jalanin</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace;">
+    git clone &lt;project&gt;<br/>
+    cd robot-control<br/>
+    docker compose up -d<br/>
+    # Buka http://localhost:8080
+  </div>
+</div>

@@ -1,0 +1,15 @@
+[     454ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[     466ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8081/favicon.ico:0
+[   14261ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[   15187ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[   15768ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[   16340ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[   17891ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[   17912ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8081/favicon.ico:0
+[   23068ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[   24943ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[   24948ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8081/favicon.ico:0
+[   73956ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[   74109ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[   74546ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54
+[   74733ms] [LOG] [MQTT] Connected @ http://localhost:8081/app.js:54

@@ -1,0 +1,26 @@
+<h2>🧠 Pertanyaan 3: Koneksi Web → ESP32</h2>
+<p class="subtitle">Bagaimana cara web app berkomunikasi dengan ESP32?</p>
+
+<div class="options">
+  <div class="option" data-choice="ap" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>ESP32 sebagai Access Point (AP Mode)</h3>
+      <p>ESP32 buat WiFi sendiri. Laptop/HP connect langsung ke ESP32. Paling sederhana, tanpa router. Tapi cuma 1 device bisa connect.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="sta" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>ESP32 di Jaringan WiFi yang Sama (STA Mode)</h3>
+      <p>ESP32 dan HP/laptop connect ke WiFi router yang sama. Bisa multi-device, range lebih luas, tapi butuh router.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="ble" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Web Bluetooth (BLE)</h3>
+      <p>Akses ESP32 via Bluetooth dari browser. Tanpa WiFi, langsung pairing. Tapi browser support terbatas, agak ribet setup-nya.</p>
+    </div>
+  </div>
+</div>

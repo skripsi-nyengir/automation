@@ -1,0 +1,45 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - heading "🦾 Robot Arm Control" [level=1] [ref=e4]
+    - generic [ref=e7]: Connected
+  - main [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: 🔄
+        - generic [ref=e12]: Base Rotation
+        - generic [ref=e13]: 90°
+      - slider [ref=e14] [cursor=pointer]: "90"
+      - generic [ref=e15]:
+        - generic [ref=e16]: 0°
+        - generic [ref=e17]: 180°
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]: ⬆️⬇️
+        - generic [ref=e21]: Arm Up/Down
+        - generic [ref=e22]: 90°
+      - slider [ref=e23] [cursor=pointer]: "90"
+      - generic [ref=e24]:
+        - generic [ref=e25]: 0°
+        - generic [ref=e26]: 180°
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]: ↔️
+        - generic [ref=e30]: Arm Forward/Back
+        - generic [ref=e31]: 90°
+      - slider [ref=e32] [cursor=pointer]: "90"
+      - generic [ref=e33]:
+        - generic [ref=e34]: 0°
+        - generic [ref=e35]: 180°
+    - generic [ref=e36]:
+      - generic [ref=e37]:
+        - generic [ref=e38]: ✊
+        - generic [ref=e39]: Gripper
+        - generic [ref=e40]: 90°
+      - slider [ref=e41] [cursor=pointer]: "90"
+      - generic [ref=e42]:
+        - generic [ref=e43]: 0°
+        - generic [ref=e44]: 180°
+    - generic [ref=e45]:
+      - button "🏠 Home (90°)" [ref=e46] [cursor=pointer]
+      - button "🛑 STOP" [ref=e47] [cursor=pointer]
+    - button "✅ Resumed!" [active] [ref=e50] [cursor=pointer]

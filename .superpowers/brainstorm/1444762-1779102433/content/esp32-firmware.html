@@ -1,0 +1,64 @@
+<h2>📟 ESP32 Firmware Design</h2>
+<p class="subtitle">Ringan, sederhana, reconnect otomatis.</p>
+
+<div class="section">
+  <h3>Alur Program</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+    setup():<br/>
+    &nbsp;&nbsp;1. Connect WiFi (STA mode)<br/>
+    &nbsp;&nbsp;2. Init 4 servo PWM pins<br/>
+    &nbsp;&nbsp;3. Set all servo ke 90° (home)<br/>
+    &nbsp;&nbsp;4. Connect ke MQTT broker<br/>
+    &nbsp;&nbsp;5. Subscribe ke "robot/servo/#"<br/>
+    <br/>
+    loop():<br/>
+    &nbsp;&nbsp;1. client.loop() — jaga koneksi MQTT<br/>
+    &nbsp;&nbsp;2. Auto-reconnect jika WiFi/MQTT putus<br/>
+    <br/>
+    onMessage(topic, payload):<br/>
+    &nbsp;&nbsp;1. Parse topic → tentukan servo mana<br/>
+    &nbsp;&nbsp;2. Parse payload → nilai 0-180<br/>
+    &nbsp;&nbsp;3. Konversi ke pulse width<br/>
+    &nbsp;&nbsp;4. Tulis ke pin servo
+  </div>
+</div>
+
+<div class="section">
+  <h3>Libraries</h3>
+  <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+    <div style="background: #1e1e2e; padding: 12px; border-radius: 8px;">
+      <strong>WiFi</strong><br/>
+      <span style="color: #888;">Built-in ESP32</span>
+    </div>
+    <div style="background: #1e1e2e; padding: 12px; border-radius: 8px;">
+      <strong>PubSubClient</strong><br/>
+      <span style="color: #888;">MQTT client Arduino</span>
+    </div>
+    <div style="background: #1e1e2e; padding: 12px; border-radius: 8px;">
+      <strong>ESP32Servo</strong><br/>
+      <span style="color: #888;">PWM servo control</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Pin Mapping (contoh)</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+    Servo Base      → GPIO 13<br/>
+    Servo Up/Down   → GPIO 12<br/>
+    Servo Fwd/Bwd   → GPIO 14<br/>
+    Servo Gripper   → GPIO 27
+  </div>
+  <p class="subtitle">Pin bisa kamu sesuaikan dengan wiring-mu.</p>
+</div>
+
+<div class="section">
+  <h3>Topic → Servo Mapping</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+    robot/servo/base     → Servo Base (GPIO 13)<br/>
+    robot/servo/updown   → Servo Up/Down (GPIO 12)<br/>
+    robot/servo/arm      → Servo Forward/Back (GPIO 14)<br/>
+    robot/servo/gripper  → Servo Gripper (GPIO 27)<br/>
+    robot/emergency      → Stop semua servo (special command)
+  </div>
+</div>

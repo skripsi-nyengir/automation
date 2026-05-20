@@ -1,0 +1,59 @@
+<h2>⚖️ Perbandingan: WebSocket vs MQTT</h2>
+
+<div class="section">
+  <h3>Konsep MQTT yang Kamu Usulkan</h3>
+  <p style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace;">
+    Browser → Web App (laptop) → MQTT Broker (laptop) → ESP32 (MQTT client) → PWM → Servo
+  </p>
+</div>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">🟢 Recommended: ESP32 All-in-One</div>
+    <div class="mockup-body" style="padding: 12px;">
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pro</h4>
+          <ul>
+            <li>✅ 1 device, zero setup</li>
+            <li>✅ Buka browser → langsung kontrol</li>
+            <li>✅ WebSocket = real-time & smooth</li>
+            <li>✅ Paling cepat deliver (tugas kuliah)</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Kontra</h4>
+          <ul>
+            <li>❌ UI terbatas (memory ESP32)</li>
+            <li>❌ Flashing ulang kalau ganti UI</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">💡 Ide Kamu: MQTT + Laptop Server</div>
+    <div class="mockup-body" style="padding: 12px;">
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pro</h4>
+          <ul>
+            <li>✅ UI bebas (React/Vue/tanpa batas)</li>
+            <li>✅ Arsitektur IoT yang proper</li>
+            <li>✅ Bisa expand ke sensor lain</li>
+            <li>✅ ESP32 code lebih sederhana</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Kontra</h4>
+          <ul>
+            <li>❌ Setup lebih banyak (install broker)</li>
+            <li>❌ 2 service harus jalan</li>
+            <li>❌ Latency lebih tinggi (2 hop)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

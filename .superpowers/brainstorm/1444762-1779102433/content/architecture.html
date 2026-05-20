@@ -1,0 +1,50 @@
+<h2>🏗️ Proposed Architecture</h2>
+
+<div class="mockup">
+  <div class="mockup-header">System Overview</div>
+  <div class="mockup-body" style="padding: 16px; font-family: monospace; font-size: 14px; line-height: 1.8;">
+    <div style="text-align: center; margin-bottom: 16px;">
+      <span style="background: #4CAF50; color: #fff; padding: 4px 12px; border-radius: 12px;">▶ USER</span>
+    </div>
+
+    <div style="border: 2px solid #555; border-radius: 8px; padding: 12px; margin: 8px 0;">
+      <strong>🌐 Browser</strong><br/>
+      <span style="color: #888;">└─ MQTT.js → publish ke topic robot/servo/#</span>
+    </div>
+
+    <div style="text-align: center; margin: 8px 0;">⬆️ HTTP (port 8080) &nbsp;⬆️⬇️ WebSocket (port 9001)</div>
+
+    <div style="border: 2px dashed #4CAF50; border-radius: 8px; padding: 12px; margin: 8px 0;">
+      <strong>🐳 DOCKER COMPOSE</strong><br/>
+      <span style="color: #888;">└─ nginx:alpine → serve static HTML/CSS/JS (port 8080)</span><br/>
+      <span style="color: #888;">└─ eclipse-mosquitto → MQTT broker (port 1883, 9001)</span>
+    </div>
+
+    <div style="text-align: center; margin: 8px 0;">⬆️⬇️ MQTT TCP (port 1883)</div>
+
+    <div style="border: 2px solid #f44336; border-radius: 8px; padding: 12px; margin: 8px 0;">
+      <strong>📟 ESP32</strong><br/>
+      <span style="color: #888;">└─ WiFi STA → connect ke jaringan yang sama</span><br/>
+      <span style="color: #888;">└─ PubSubClient → subscribe ke topic robot/servo/#</span><br/>
+      <span style="color: #888;">└─ Servo ESP32 library → PWM ke 4 servo</span>
+    </div>
+
+    <div style="text-align: center; margin-top: 16px;">
+      <span style="background: #f44336; color: #fff; padding: 2px 8px; border-radius: 4px;">Servo Base</span>
+      <span style="background: #f44336; color: #fff; padding: 2px 8px; border-radius: 4px;">Servo Up/Down</span>
+      <span style="background: #f44336; color: #fff; padding: 2px 8px; border-radius: 4px;">Servo Fwd/Bwd</span>
+      <span style="background: #f44336; color: #fff; padding: 2px 8px; border-radius: 4px;">Servo Gripper</span>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 16px;">
+  <h3>Topic Structure</h3>
+  <div style="background: #1e1e2e; padding: 12px; border-radius: 8px; font-family: monospace;">
+    robot/servo/base     → 0-180° (rotasi horizontal)<br/>
+    robot/servo/updown   → 0-180° (naik turun)<br/>
+    robot/servo/arm      → 0-180° (maju mundur)<br/>
+    robot/servo/gripper  → 0-180° (buka tutup)<br/>
+    robot/status         ← ESP32 laporan balik (opsional)
+  </div>
+</div>

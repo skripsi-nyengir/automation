@@ -1,0 +1,19 @@
+services:
+  control-server:
+    build: ./control-server
+    container_name: robot-control
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+
+  web:
+    image: nginx:alpine
+    container_name: robot-web
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./web:/usr/share/nginx/html
+    depends_on:
+      - control-server

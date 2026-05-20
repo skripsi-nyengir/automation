@@ -1,0 +1,67 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - heading "🦾 Robot Arm Control" [level=1] [ref=e4]
+    - generic [ref=e5]:
+      - generic [ref=e7]: Connected
+      - generic [ref=e8]: "ESP32: ?"
+  - main [ref=e9]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]: 🔄
+        - generic [ref=e13]: Base Rotation
+        - generic [ref=e14]: 90°
+      - slider [ref=e15] [cursor=pointer]: "90"
+      - generic [ref=e16]:
+        - generic [ref=e17]: 0°
+        - generic [ref=e18]: 180°
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]: ⬆️⬇️
+        - generic [ref=e22]: Arm Up/Down
+        - generic [ref=e23]: 90°
+      - slider [ref=e24] [cursor=pointer]: "90"
+      - generic [ref=e25]:
+        - generic [ref=e26]: 0°
+        - generic [ref=e27]: 180°
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]: ↔️
+        - generic [ref=e31]: Arm Forward/Back
+        - generic [ref=e32]: 90°
+      - slider [ref=e33] [cursor=pointer]: "90"
+      - generic [ref=e34]:
+        - generic [ref=e35]: 0°
+        - generic [ref=e36]: 180°
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - generic [ref=e39]: ✊
+        - generic [ref=e40]: Gripper
+        - generic [ref=e41]: 90°
+      - slider [ref=e42] [cursor=pointer]: "90"
+      - generic [ref=e43]:
+        - generic [ref=e44]: 0°
+        - generic [ref=e45]: 180°
+    - generic [ref=e46]:
+      - button "🏠 Home (90°)" [ref=e47] [cursor=pointer]
+      - button "🛑 STOP" [ref=e48] [cursor=pointer]
+    - button "▶️ Resume" [ref=e50] [cursor=pointer]
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]: 🎮 Joystick
+        - generic [ref=e54]: ❌ Not connected
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]: Left X → Base
+          - generic [ref=e60]: 90°
+        - generic [ref=e61]:
+          - generic [ref=e62]: Left Y → Up/Down
+          - generic [ref=e65]: 90°
+        - generic [ref=e66]:
+          - generic [ref=e67]: Right X → Arm
+          - generic [ref=e70]: 90°
+        - generic [ref=e71]:
+          - generic [ref=e72]: Right Y → Gripper
+          - generic [ref=e75]: 90°
+      - generic [ref=e76]:
+        - generic [ref=e77]: "Deadzone: 10%"
+        - slider [ref=e78]: "10"

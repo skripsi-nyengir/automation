@@ -1,0 +1,34 @@
+<h2>🔌 Koneksi Browser → MQTT Broker</h2>
+
+<p class="subtitle">3 opsi. Rekomendasi saya ada di nomor 2.</p>
+
+<div class="options">
+  <div class="option" data-choice="direct" onclick="toggleSelect(this)">
+    <div class="letter">1</div>
+    <div class="content">
+      <h3>Direct WebSocket (ws://host:9001)</h3>
+      <p>Browser connect langsung ke port 9001 Mosquitto.</p>
+      <p>Simpel, tapi: port beda (9001 vs 8080) → <strong>CORS issue</strong> di beberapa browser, dan harus tahu <code>hostname</code> server.</p>
+      <p style="margin-top: 8px; color: #888;">Contoh: <code>new MQTT.connect('ws://192.168.1.10:9001')</code></p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="nginx-proxy" onclick="toggleSelect(this)" style="border-color: #4CAF50;">
+    <div class="letter">⭐ 2</div>
+    <div class="content">
+      <h3>Nginx Reverse Proxy (Recommended)</h3>
+      <p>Nginx proxy MQTT WebSocket dari <code>/mqtt</code> → <code>localhost:9001</code>.</p>
+      <p><strong>Same-origin</strong>: browser connect ke <code>ws://localhost:8080/mqtt</code> — port sama, nggak ada CORS. Browser auto-detect hostname dari URL web.</p>
+      <p style="margin-top: 8px; color: #888;">Kode di app.js: <code>const wsUrl = 'ws://'+window.location.hostname+':8080/mqtt'</code></p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="config" onclick="toggleSelect(this)">
+    <div class="letter">3</div>
+    <div class="content">
+      <h3>Config File + Input Manual</h3>
+      <p>Punya file <code>config.js</code> dengan broker address. Atau user input IP di halaman setup pertama kali.</p>
+      <p>Fleksibel, tapi ribet: tiap ganti jaringan harus ganti config.</p>
+    </div>
+  </div>
+</div>

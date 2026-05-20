@@ -1,0 +1,26 @@
+<h2>🧠 Pertanyaan 4: Interface Kontrol</h2>
+<p class="subtitle">Seperti apa tampilan kontrol di web?</p>
+
+<div class="options">
+  <div class="option" data-choice="slider" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Slider per Servo</h3>
+      <p>4 slider (0-180°) — satu untuk base, up/down, forward/backward, gripper. Simple, langsung, mudah diimplementasikan. Cocok untuk tugas kuliah.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="joystick" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Virtual Joystick + Slider</h3>
+      <p>Joystick untuk gerakan (base rotate + extend), slider untuk up/down + gripper. Lebih intuitif. Sedikit lebih kompleks.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="preset" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Preset Positions + Slider</h3>
+      <p>Tombol preset (ambil, angkat, taruh, home) untuk gerakan cepat, plus slider untuk fine-tuning. Paling fungsional tapi paling kompleks.</p>
+    </div>
+  </div>
+</div>

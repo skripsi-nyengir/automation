@@ -1,0 +1,35 @@
+<h2>🏗️ 3 Pendekatan Arsitektur</h2>
+<p class="subtitle">Berdasarkan kebutuhan: tugas kuliah, slider control, STA mode WiFi</p>
+
+<div class="options">
+  <div class="option" data-choice="all-in-one" onclick="toggleSelect(this)" style="border-color: #4CAF50;">
+    <div class="letter">⭐ A</div>
+    <div class="content">
+      <h3>ESP32 All-in-One (Recommended)</h3>
+      <p><strong>Cara kerja:</strong> ESP32 jalanin 3 peran sekaligus — web server (hosting HTML/CSS/JS), WebSocket server, dan PWM controller untuk servo.</p>
+      <p><strong>Komunikasi:</strong> Browser → WebSocket → ESP32 → PWM → Servo</p>
+      <p><strong>Pro:</strong> Single device, zero setup (buka browser → langsung kontrol), latency rendah</p>
+      <p><strong>Kontra:</strong> UI terbatas karena memory ESP32, musti flashing ulang kalau mau ubah web</p>
+    </div>
+  </div>
+  <div class="option" data-choice="two-tier" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Two-Tier: Web Terpisah + ESP32 API</h3>
+      <p><strong>Cara kerja:</strong> ESP32 hanya jalanin REST API server. Web page dihosting terpisah (laptop/PC).</p>
+      <p><strong>Komunikasi:</strong> Browser → Laptop Web Server → HTTP REST → ESP32 → PWM → Servo</p>
+      <p><strong>Pro:</strong> UI kaya & fleksibel (React/Vue bebas), easy to debug</p>
+      <p><strong>Kontra:</strong> Setup ribet (2 server), latency lebih tinggi, dependensi lebih banyak</p>
+    </div>
+  </div>
+  <div class="option" data-choice="hybrid" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>ESP32 Embedded + REST</h3>
+      <p><strong>Cara kerja:</strong> ESP32 host web page via HTTP, setiap slider digerakkan kirim HTTP request. No WebSocket.</p>
+      <p><strong>Komunikasi:</strong> Browser → HTTP POST → ESP32 → PWM → Servo</p>
+      <p><strong>Pro:</strong> Paling sederhana secara kode, gampang debug via browser</p>
+      <p><strong>Kontra:</strong> Delay karena HTTP handshake tiap gerakan, kurang halus untuk real-time control</p>
+    </div>
+  </div>
+</div>

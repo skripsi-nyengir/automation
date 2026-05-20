@@ -1,0 +1,25 @@
+{"type":"server-started","port":59897,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:59897","screen_dir":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content","state_dir":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/state"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/arm-type.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/use-case.html"}
+{"source":"user-event","type":"click","text":"A\n    \n      Tugas Kuliah / Project Akhir\n      Ada deadline, perlu deliverable yang jelas. Fokus: cepat selesai, dokumentasi rapi.","choice":"tugas","id":null,"timestamp":1779103195418}
+{"source":"user-event","type":"click","text":"A\n    \n      Tugas Kuliah / Project Akhir\n      Ada deadline, perlu deliverable yang jelas. Fokus: cepat selesai, dokumentasi rapi.","choice":"tugas","id":null,"timestamp":1779103200976}
+{"source":"user-event","type":"click","text":"A\n    \n      Tugas Kuliah / Project Akhir\n      Ada deadline, perlu deliverable yang jelas. Fokus: cepat selesai, dokumentasi rapi.","choice":"tugas","id":null,"timestamp":1779103201109}
+{"source":"user-event","type":"click","text":"A\n    \n      Tugas Kuliah / Project Akhir\n      Ada deadline, perlu deliverable yang jelas. Fokus: cepat selesai, dokumentasi rapi.","choice":"tugas","id":null,"timestamp":1779103203560}
+{"source":"user-event","type":"click","text":"A\n    \n      Tugas Kuliah / Project Akhir\n      Ada deadline, perlu deliverable yang jelas. Fokus: cepat selesai, dokumentasi rapi.","choice":"tugas","id":null,"timestamp":1779103203704}
+{"source":"user-event","type":"click","text":"A\n    \n      Tugas Kuliah / Project Akhir\n      Ada deadline, perlu deliverable yang jelas. Fokus: cepat selesai, dokumentasi rapi.","choice":"tugas","id":null,"timestamp":1779103203812}
+{"source":"user-event","type":"click","text":"B\n    \n      Belajar Robotics & IoT\n      Eksplorasi, pengalaman, portofolio. Fokus: memahami konsep, fleksibel untuk iterasi.","choice":"belajar","id":null,"timestamp":1779103204800}
+{"source":"user-event","type":"click","text":"A\n    \n      Tugas Kuliah / Project Akhir\n      Ada deadline, perlu deliverable yang jelas. Fokus: cepat selesai, dokumentasi rapi.","choice":"tugas","id":null,"timestamp":1779103205133}
+{"source":"user-event","type":"click","text":"B\n    \n      Belajar Robotics & IoT\n      Eksplorasi, pengalaman, portofolio. Fokus: memahami konsep, fleksibel untuk iterasi.","choice":"belajar","id":null,"timestamp":1779103205872}
+{"source":"user-event","type":"click","text":"A\n    \n      Tugas Kuliah / Project Akhir\n      Ada deadline, perlu deliverable yang jelas. Fokus: cepat selesai, dokumentasi rapi.","choice":"tugas","id":null,"timestamp":1779103206220}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/connection-mode.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/control-type.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/approaches.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/mqtt-comparison.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/architecture.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/docker-setup.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/mqtt-connection.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/nginx-config.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/web-ui.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/esp32-firmware.html"}
+{"type":"screen-added","file":"/media/dandy/College/SEMESTER_VIII/AUTOMATION/tubes/web/.superpowers/brainstorm/1444762-1779102433/content/data-flow.html"}
+{"type":"server-stopped","reason":"owner process exited"}
