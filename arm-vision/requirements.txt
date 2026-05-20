@@ -1,0 +1,12 @@
+# Environment: use the shared venv at C:\Users\Lenovo\torch-env
+# (python 3.13). PyTorch is ALREADY installed there and working:
+#   torch 2.8.0+cu129 (stable) — supports Blackwell sm_120 on the RTX 5050.
+# A nightly wheel is NOT required. Install the packages below into torch-env:
+#   C:\Users\Lenovo\torch-env\Scripts\python.exe -m pip install -r requirements.txt
+
+ultralytics
+opencv-python
+websocket-client
+pytest
+# Optional CPU fallback backend. May lack a Python 3.13 wheel; install only if needed:
+#   pip install mediapipe
